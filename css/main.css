@@ -1,1 +1,12 @@
 /* Place CSS styles here */
+body {
+    background-color: #000000;
+}
+
+.racetrack-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 60%;
+}
