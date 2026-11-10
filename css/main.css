@@ -1,12 +1,158 @@
-/* Place CSS styles here */
 body {
-    background-color: #000000;
+    margin: 0;
+    min-height: 100vh;
+    background: #000;
 }
 
-.racetrack-container {
+.ignition {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.scene {
+    display: grid;
+    grid-template-columns: 8rem auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    width: min(calc(100vw - 2rem), 1250px);
+    margin: 1rem auto;
+}
+
+.drive-button {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    justify-self: center;
+    padding: 0.9rem 1.15rem;
+    border: 2px solid currentColor;
+    border-radius: 999px;
+    font: 700 1rem/1 Arial, sans-serif;
+    cursor: pointer;
+}
+
+.go-button {
+    display: block;
+    color: #16c45a;
+}
+
+.stop-button {
+    display: none;
+    color: #f22;
+}
+
+#ignition:checked ~ .scene .go-button {
+    display: none;
+}
+
+#ignition:checked ~ .scene .stop-button {
+    display: block;
+}
+
+#ignition:focus-visible ~ .scene .drive-button {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+}
+
+.traffic-light {
+    grid-column: 2;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 60%;
+    gap: 0.8rem;
+    padding: 0.65rem 1rem;
+    border-radius: 0.5rem;
+    margin-left: 300px;
+    margin-right: 300px;
+    background: #777;
+}
+
+.light {
+    width: clamp(1.7rem, 4vw, 3rem);
+    aspect-ratio: 1;
+    border: 3px solid #111;
+    border-radius: 50%;
+    background: #111;
+}
+
+.red-light {
+    background: #f5222d;
+}
+
+#ignition:checked ~ .scene .red-light {
+    background: #111;
+}
+
+#ignition:checked ~ .scene .green-light {
+    background: #16c45a;
+}
+
+#ignition:checked ~ .scene .yellow-light {
+    background: #111;
+}
+
+.yellow-light {
+    background: #111;
+}
+
+.track-frame {
+    grid-column: 2;
+    --track-scale: min(1, calc((100vw - 11rem) / 1078px));
+    width: calc(1078px * var(--track-scale));
+    height: calc(711px * var(--track-scale));
+}
+
+.track-canvas {
+    position: relative;
+    width: 1078px;
+    height: 711px;
+    transform: scale(var(--track-scale));
+    transform-origin: top left;
+}
+
+.racetrack {
+    display: block;
+    width: 1078px;
+    height: 711px;
+}
+
+.yellow-car {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 64px;
+    height: 32px;
+    offset-path: path("M170.07 201c12.39-12.38 23.29-23.87 39.63-30.44 27.64-11.11 61.16-26.39 94.28-36.39 30.32-9.15 61.19-26.7 92.86-29.08s64.93 2.66 91.17 19.96c22.38 14.75 38.5 38.12 43.99 63.76 3.98 18.59 3.44 39.97 17.35 53.38 7.93 7.64 19.12 11.03 29.88 14.01 30.11 8.33 61.28 15.55 92.45 12.62s62.69-17.69 77.91-44.15c9.35-16.26 12.12-35.88 23.89-50.59 16.51-20.64 50.29-25.8 72.58-11.08 9.53 6.29 16.71 15.38 25.67 22.42 6.17 4.85 13.26 8.8 18.22 14.81 4.16 5.05 6.54 11.24 8.66 17.37 21.29 61.69 22.14 129.81 2.41 191.98-6.69 21.08-15.65 41.42-25.19 61.45-17.24 36.21-37.43 72.77-70.2 96.96-34.02 25.12-97.77 48.67-137.84 34.12-40.08-14.55-74.5-39.93-73.95-81.32.42-31.57 4.43-55.24 30.45-74.31 12.85-9.42 37.38-25.05 53.22-27.99 29.18-5.42 51.51-2.21 63.84 22.07 4.79 9.43 5.91 31.94 10.72 41.36 4.71 9.23 12.6 18.34 22.98 16.09 10.38-2.26 46.72-52.76 49.02-62.81 7.32-32.04-10.59-51.91-38.3-76.6-27.71-24.69-71.26-12.67-108.77-9.19-70.45 6.53-134.14 41.32-163.91 103.4-8.26 17.22-15.39 39.5-23.74 56.68-22.57 46.42-53.87 95.56-105.7 106.47s-117.94-15.14-150.13-55.91c-30.63-38.8-49.2-89.98-66.01-136-24.65-67.51-70.34-161.39 3.68-223.79");
+    offset-rotate: auto;
+    offset-anchor: center;
+    animation: drive-lap 9s linear infinite paused;
+}
+
+#ignition:checked ~ .scene .yellow-car {
+    animation-play-state: running;
+}
+
+@keyframes drive-lap {
+    from { offset-distance: 0%; }
+    to { offset-distance: 100%; }
+}
+
+@media (max-width: 520px) {
+    .scene {
+        grid-template-columns: 3.5rem auto;
+        column-gap: 0.5rem;
+    }
+
+    .track-frame {
+        --track-scale: calc((100vw - 6rem) / 1078px);
+    }
+
+    .track-canvas {
+        transform: scale(var(--track-scale));
+    }
+
+    .drive-button {
+        padding: 0.7rem 0.45rem;
+        font-size: 0.8rem;
+    }
 }

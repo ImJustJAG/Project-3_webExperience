@@ -23,13 +23,24 @@
 </head>
 
 <body>
-  <!-- Place your site's HTML here -->
- <div class="racetrack-container">
-  <img class="racetrack" src="svgs/RaceTrackSVG.svg">
+  <input class="ignition" type="checkbox" id="ignition" aria-label="Start or stop the car">
+  <main class="scene">
+    <label class="drive-button go-button" for="ignition">GO</label>
+    <label class="drive-button stop-button" for="ignition">STOP</label>
 
- </div>  
+    <div class="traffic-light" aria-label="Traffic light">
+      <span class="light red-light"></span>
+      <span class="light yellow-light"></span>
+      <span class="light green-light"></span>
+    </div>
 
-  <script src="js/main.js"></script>
+    <div class="track-frame">
+      <div class="track-canvas">
+        <img class="racetrack" src="svgs%20%26%20images/RaceTrackSVG.svg" alt="Race track">
+        <img class="yellow-car" src="svgs%20%26%20images/YellowCar.png" alt="Yellow car">
+      </div>
+    </div>
+  </main>
 </body>
 
 </html>
