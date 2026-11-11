@@ -23,7 +23,7 @@
 </head>
 
 <body>
-  <input class="ignition" type="checkbox" id="ignition" aria-label="Start or stop the car">
+  <input class="ignition" type="checkbox" id="ignition">
   <main class="scene">
     <label class="hvr-grow drive-button go-button" for="ignition">GO</label>
     <label class="hvr-grow drive-button stop-button" for="ignition">STOP</label>
@@ -36,8 +36,10 @@
 
     <div class="track-frame">
       <div class="track-canvas">
-        <img class="racetrack" src="svgs%20%26%20images/RaceTrackSVG.svg" alt="Race track">
-        <img class="yellow-car" src="svgs%20%26%20images/YellowCar.png" alt="Yellow car">
+        <img class="racetrack" src="svgs%20%26%20images/RaceTrackSVG.svg" alt="">
+        <div class="yellow-car-container">
+          <img class="yellow-car hvr-wobble-skew" src="svgs%20%26%20images/YellowCar.png" alt="">
+        </div>
       </div>
     </div>
   </main>
